@@ -6,6 +6,8 @@ import hiber.model.User;
 import hiber.service.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import javax.persistence.NoResultException;
+import java.util.Arrays;
 import java.util.List;
 
 public class MainApp {
@@ -31,6 +33,7 @@ public class MainApp {
         userService.add(user4.setCar(car4).setUser(user4));
 
         List<User> users = userService.listUsers();
+        System.out.println("Пользователи и их машины: ");
         for (User user : users) {
             System.out.println("Id = " + user.getId());
             System.out.println("First Name = " + user.getFirstName());
@@ -38,6 +41,24 @@ public class MainApp {
             System.out.println("Email = " + user.getEmail());
             System.out.println("Car = " + user.getCar());
             System.out.println();
+        }
+        System.out.println("************************************************");
+
+        System.out.println("Машины:");
+        for (User user : userService.listUsers()) {
+            System.out.println("user = " + user.getCar());
+        }
+        System.out.println("************************************************");
+
+        System.out.println("Пользователь с машиной: ");
+        System.out.println(userService.getUserByCar("Mercedes", 1));
+        System.out.println("************************************************");
+
+        try {
+            User notFoundUser = userService.getUserByCar("Tesla", 5);
+        } catch (NoResultException e) {
+            System.out.println("Пользователь не найден!");
+            System.out.println("************************************************");
         }
 
         context.close();
