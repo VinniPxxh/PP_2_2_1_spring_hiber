@@ -25,6 +25,7 @@ public class Car {
     public Car(String model, int series) {
         this.model = model;
         this.series = series;
+
     }
 
     public Long getId() {
