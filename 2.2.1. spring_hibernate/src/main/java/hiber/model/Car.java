@@ -55,12 +55,19 @@ public class Car {
         return user;
     }
 
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", model='" + model + '\'' +
+                ", series=" + series +
+                '}';
+    }
+
     public User setUser(User user) {
         this.user = user;
         return user;
     }
-
-
 
 
 }
